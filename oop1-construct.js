@@ -104,8 +104,9 @@ class Shape {
 const triangle = new Shape(
   "triangle",
   [4, 7, 7],
-  null,
-  null, // Math.sqrt(7 * 7 - 4 * 4) calculated below in
+  4,
+  // a2 + b2 = c2
+  Math.sqrt(7 * 7 - 4 * 4).toFixed(2),
   null,
   null,
   null,
@@ -125,11 +126,10 @@ const triangle = new Shape(
   },
   null
 );
+console.log(triangle.height);
 
 // triangle.base = triangle.sides[0]; //base is the 1st side in the triangle.sides array.
 // triangle.height = 6.71; //determine the height using basic geometry.  How do you calculate the height of a triangle with 2 equal sides?  If you use the formula to caluclate the height, this is a bonus.  If you hard code the correct value here, that will be sufficient, but no bonus :(
-triangle.height = Math.sqrt(7 * 7 - 4 * 4); // a2 + b2 = c2
-triangle.height = triangle.height.toFixed(2);
 
 console.log(triangle);
 triangle.calcArea();
