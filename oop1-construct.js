@@ -70,3 +70,149 @@ const poisonDartFrog = new Wildlife("poison dart frog", false, "orange", [
 console.log(poisonDartFrog);
 
 //your code here...
+
+/*3. Convert the following Object Literals into a general class called Shape, and instantiate the class to generate the object literals
+ */
+
+class Shape {
+  //your code here...
+  constructor(
+    name,
+    sides,
+    base,
+    height,
+    width,
+    length,
+    radius,
+    calcArea,
+    calcPerimeter,
+    calcCircumference
+  ) {
+    this.name = name;
+    this.sides = sides;
+    this.base = base;
+    this.height = height;
+    this.width = width;
+    this.length = length;
+    this.radius = radius;
+    this.calcArea = calcArea;
+    this.calcPerimeter = calcPerimeter;
+    this.calcCircumference = calcCircumference;
+  }
+}
+
+const triangle = new Shape(
+  "triangle",
+  [4, 7, 7],
+  null,
+  null, // Math.sqrt(7 * 7 - 4 * 4) calculated below in
+  null,
+  null,
+  null,
+  function () {
+    console.log(
+      `${this.name}'s area is calculated to be : ${
+        0.5 * this.base * this.height
+      }`
+    );
+  },
+  function () {
+    console.log(
+      `${this.name}'s perimeter is calculated to be : ${
+        this.base + (this.sides[1] + this.sides[2])
+      }`
+    );
+  },
+  null
+);
+
+// triangle.base = triangle.sides[0]; //base is the 1st side in the triangle.sides array.
+// triangle.height = 6.71; //determine the height using basic geometry.  How do you calculate the height of a triangle with 2 equal sides?  If you use the formula to caluclate the height, this is a bonus.  If you hard code the correct value here, that will be sufficient, but no bonus :(
+triangle.height = Math.sqrt(7 * 7 - 4 * 4); // a2 + b2 = c2
+triangle.height = triangle.height.toFixed(2);
+
+console.log(triangle);
+triangle.calcArea();
+triangle.calcPerimeter();
+
+const rectangle = new Shape(
+  "rectangle",
+  4,
+  null,
+  null,
+  5,
+  2,
+  null,
+  function () {
+    console.log(
+      `${this.name}'s area is calculated to be : ${this.length * this.width}`
+    );
+  },
+  function () {
+    console.log(
+      `${this.name}'s perimeter is calculated to be : ${
+        2 * this.length + 2 * this.width
+      }`
+    );
+  },
+  null
+);
+
+console.log(rectangle);
+rectangle.calcArea();
+rectangle.calcPerimeter();
+
+const circle = new Shape(
+  "circle",
+  1,
+  null,
+  null,
+  null,
+  null,
+  5,
+  function () {
+    console.log(
+      `${this.name}'s area is calculated to be : ${(
+        Math.PI *
+        this.radius ** 2
+      ).toFixed(2)}`
+    );
+  },
+  null,
+  function () {
+    console.log(
+      `${this.name}'s circumference is calculated to be : ${(
+        2 *
+        Math.PI *
+        this.radius
+      ).toFixed(2)}`
+    );
+  }
+);
+
+console.log(circle);
+circle.calcCircumference();
+circle.calcArea();
+
+/*********************************************** 
+Bonus Exercises:
+
+//4. Create three more instances of the Shape class for a pentagon, hexagon, and an octagon.  Add in  comments explaining the formulas for calculating the perimeter and the areas of these 3 shapes.  Also, as noted above, if you use the formula to calculate the height of the triangle instead of hard coding it, you will also obtain the bonus for this exercise.  The dimensions for the triangle are already provided for you in the triangle object literal.
+
+
+//5. Below is a class Earth.  It is instantiated with a earth 'instance'.  Because there is only 1 known earth, we don't want multiple instances of earth.  Modify the class so the properties are usuable WITHOUT instantiating the class.
+
+*/
+
+class Earth {
+  name;
+  planetNum; //distance from the sun.  1-mercury, 2-venus, 3-earth, ...
+
+  constructor(name, num) {
+    this.name = name;
+    this.planetNum = num;
+  }
+}
+
+const earth = new Earth("earth", 3);
+console.log(earth);
