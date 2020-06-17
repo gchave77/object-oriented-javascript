@@ -116,7 +116,6 @@ review.user = "Gene Siskel";
 //     - Employee class. It should have a employee name, job title, and salary properties. Create 10 employee instances: 1 CEO, 1 Manager, 1 Secretary, 2 Engineers, 1 Financial Officer, 1 Janitor, 1 Marketer, 1 HR Personnel, 1 Lawyer.  Feel free to add other employee roles at your own discretion.
 
 //     - For each class, add 2 properties and 2 methods to each.  The properties and methods should make sense, considering what the classes are supposed to be representing.
-
 //your code here...
 class Umbrella {
   constructor(orgName) {
@@ -125,11 +124,10 @@ class Umbrella {
 }
 
 class Company extends Umbrella {
-  constructor(orgName, coName, empCount, location) {
+  constructor(orgName, coName, empCount) {
     super(orgName);
     this.coName = coName;
     this.empCount = empCount;
-    this.location = location;
     console.log(
       this.coName +
         " is a subsidiary of " +
@@ -143,21 +141,42 @@ class Company extends Umbrella {
 
 class Site extends Company {
   constructor(coName, location) {
-    super(coName, location);
+    super(coName);
+    this.location = location;
     console.log(this.coName + " is located at " + this.location);
   }
 }
 
-company1 = new Company("Allegis Group", "TEK Systems", 12300, [
-  "Dallas, TX",
-  "New York",
-  "Chicago",
-]);
+class Employee {
+  constructor(name, title, salary) {
+    this.name = name;
+    this.title = title;
+    this.salary = salary;
+    console.log(this);
+  }
+}
 
+company1 = new Company("Allegis Group", "TEK Systems", 12300);
+console.log(company1.coName);
 company2 = new Company("Goldman Sachs", "Citibank", 32100);
-
 company3 = new Company("Ford Motor Co.", "Firestone", 12800);
 
+dallas = new Site("gabe", "Dallas");
+
+emp01 = new Employee("Sally Ford", "CEO", 220000);
+emp02 = new Employee("Tom Thumb", "manager", 90000);
+emp03 = new Employee("Loki Jones", "secretary", 85000);
+emp04 = new Employee(["Tony Stark", "Hugh Smith"], "engineer", [
+  125000,
+  137000,
+]);
+emp05 = new Employee("Mason Young", "CFO", 190500);
+emp06 = new Employee("Don Hurly", "janitor", 67000);
+emp07 = new Employee("Helen Kay", "marketer", 98000);
+emp08 = new Employee("Sam Hardy", "HR", 115000);
+emp09 = new Employee("Harold Kal", "lawyer", 167000);
+
+// Create 10 employee instances: 1 CEO, 1 Manager, 1 Secretary, 2 Engineers, 1 Financial Officer, 1 Janitor, 1 Marketer, 1 HR Personnel, 1 Lawyer.  Feel free to add other employee
 //
 // Bonus Exercise:
 
