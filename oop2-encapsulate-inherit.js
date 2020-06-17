@@ -118,3 +118,55 @@ review.user = "Gene Siskel";
 //     - For each class, add 2 properties and 2 methods to each.  The properties and methods should make sense, considering what the classes are supposed to be representing.
 
 //your code here...
+class Umbrella {
+  constructor(orgName) {
+    this.orgName = orgName;
+  }
+}
+
+class Company extends Umbrella {
+  constructor(orgName, coName, empCount, location) {
+    super(orgName);
+    this.coName = coName;
+    this.empCount = empCount;
+    this.location = location;
+    console.log(
+      this.coName +
+        " is a subsidiary of " +
+        this.orgName +
+        " with approximately " +
+        this.empCount +
+        " employees."
+    );
+  }
+}
+
+class Site extends Company {
+  constructor(coName, location) {
+    super(coName, location);
+    console.log(this.coName + " is located at " + this.location);
+  }
+}
+
+company1 = new Company("Allegis Group", "TEK Systems", 12300, [
+  "Dallas, TX",
+  "New York",
+  "Chicago",
+]);
+
+company2 = new Company("Goldman Sachs", "Citibank", 32100);
+
+company3 = new Company("Ford Motor Co.", "Firestone", 12800);
+
+//
+// Bonus Exercise:
+
+// 3. Building on Exercise 1, Do the following :
+// - Create a Bookstore class.  It should contain a collection of various Book Instances.
+// - Each Book Instance should contain the Instances of the relavant Authors, Publishers, and Reviews.
+// - Each Publisher should contain Instances of the Authors that are affiliated with the relavant Publisher.
+
+// Each Book instance should contain instances of the Authors, the Publishers, and the Reviews pertinent to each book.  This exercise is using the advanced encapsulation concept of "composition", reflecting a "HAS A" relationship.
+// */
+
+//     //your code here...
