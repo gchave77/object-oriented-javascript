@@ -1,4 +1,3 @@
-
 /*
 1. Create a Abstract Creature class that is NOT allowed to be instantiated. Find a way to prevent this class from being instantiated with an instance.  In the Creature class, include two abstract methods.  move(), and act().  These methods are NOT allowed to be invoked from the Abstract class, so throw an error in these methods if they are invoked by any inherited sub-classes.  
 
@@ -17,134 +16,114 @@ These sub-classes MUST implement the abstract methods of move() and act(), which
 
 */
 
-    class Creature {
-        //your code here...
+class Creature {
+  //your code here...
+  constructor(name, hunger) {
+    this.name = name;
+    this.hunger = hunger;
+    if (this.constructor == Creature) {
+      throw new Error(
+        "Unable to instantiate the constructor. These methods are NOT allowed to be invoked from the Abstract class."
+      );
     }
+  }
 
-    class Human extends Creature {
-        //your code here...
-    }
+  move() {
+    throw new Error(
+      "Unable to instantiate move method from the Abstract class."
+    );
+  }
 
-
-
-
-/*
-2. For the following Person class, modify the class methods, so the sub-class methods will successfully fire.  For the Teacher method, a set of methods have already been set up.  For the Student class, it will be up to you to determine how to set up the methods to fire in the Student sub-class.  :
-*/
-
-class Person {
-    name;
-
-    eat() {
-        console.log(this.name + " is eating");
-    }
-
-    sleep = () => {
-        console.log(this.name + " is sleeping");
-    }
-
-    code = function() {
-        console.log(this.name + " is coding");
-    }
-
-    repeat = function() {
-        console.log(this.name + " is repeating the above steps, yet another time");
-    }
-
-    explain() {
-        //this function should contain a console.log() explaining what you had to do to get the correct functions to work, and the reasoning behind what you did.
-        console.log("this explain method should contain explain what you had to do to get the correct functions to work, and the reasoning behind what you did.");
-    }
-
+  act() {
+    throw new Error(
+      "Unable to instantiate act method from the Abstract class."
+    );
+  }
 }
 
+class Human extends Creature {
+  //your code here...
+  constructor(name, hunger, direction, action, duration) {
+    super(name, hunger);
+    this.direction = direction;
+    this.action = action;
+    this.duration = duration;
+    console.log(this);
+  }
 
-class Teacher extends Person {
+  move() {
+    console.log(
+      `${this.name} ${this.action[0]} towards the ${this.direction} for ${this.duration[0]} minutes.`
+    );
+  }
 
-    //refactor the methods in this Teacher class, so all of these methods override the methods in the Person super class.  
+  act() {
+    console.log(
+      `Then ${this.name} ${this.action[1]} for ${this.duration[1]} minutes.`
+    );
+  }
 
-    constructor(name) {
-        super(name);
-        this.name = name;
+  eat() {
+    if (this.hunger) {
+      console.log(`Hunger pangs convinced ${this.name} to ${this.action[2]}.`);
+    } else {
+      console.log(`It is time for ${this.name} to ${this.action[3]}.`);
     }
-
-    eat() {
-        console.log(this.name + " loves to teach before eating");
-    }
-
-    sleep() {
-        console.log(this.name + " sleeps after preparing the lesson plan");
-    }
-
-    code = () => {
-        console.log(this.name + " codes first, then teaches it the next day.");
-    }
-
-    repeat() {
-        console.log(this.name + " teaches, codes, eats, sleeps, and repeats");
-    }
+  }
 }
 
+const bob = new Human(
+  "Bob",
+  true,
+  "west",
+  ["walked", "sat down", "eat lunch", "take a nap"],
+  [5, 2]
+);
+bob.move();
+bob.act();
+bob.eat();
 
-class Student extends Person {
-    //set up your methods in this student class, so all of these methods will override the methods from the super class.
+class Fish extends Creature {
+  constructor(name, hunger, direction, action, duration) {
+    super(name, hunger);
+    this.direction = direction;
+    this.action = action;
+    this.duration = duration;
+    console.log(this);
+  }
 
-    //eat method should print out - <stduent name> studies, then eats
+  move() {
+    console.log(
+      `A ${this.name} will ${this.action[0]} ${this.direction} to ${this.action[1]}.`
+    );
+  }
 
-    //sleep method should print out, <student name> studies coding so much, that they dream about it in their sleep
+  act() {
+    console.log(
+      `Most ${this.name} ${this.action[2]} after they ${this.action[1]}.`
+    );
+  }
 
-    //code method should print out, <student name> was first overwhelmed by coding, but kept at it, and now has become a coding guru!
-
-    //repeat method should print out, <student name> keeps on studying, coding, eating, and sleeping, and puts it all on repeat.  
-
+  eat() {
+    if (this.hunger) {
+      console.log(
+        `Typically, ${this.name} ${this.action[3]} ${this.duration[1]} a day.`
+      );
+    } else {
+      console.log(
+        `They only ${this.action[1]} ${this.duration[0]} in their lifetime.`
+      );
+    }
+  }
 }
 
-
-const teacher = new Teacher("Dr. Teacher");
-
-teacher.explain();
-
-const student = new Student("Pupil Student");
-
-student.explain();
-
-teacher.eat();
-teacher.sleep();
-teacher.code();
-teacher.repeat();
-
-student.eat();
-student.sleep();
-student.code();
-student.repeat();
-
-
-
-
-//****************************************************************************************************************************************************************************************   
-//Bonus Exercise:
-
-//3. Consider the following class:
-
-class Cook {
-
-    prepare(food1,food2,food3) {
-        console.log("The cook is cooking " + food1, food2, food3);
-    }
-
-    prepare = function() {
-        console.log('The cook is cooking');
-    }
-
-    explain = () => {
-        console.log("what could you do to get the prepare function to print out the food items that are being passed in to the function?  Once you figure it out, Write down your thought process in this explain method.");
-    }
-
-}
-
-const cook = new Cook();
-
-cook.prepare("turkey","salami","pizza");
-
-cook.explain();
-
+const salmon = new Fish(
+  "salmon",
+  true,
+  "upstream",
+  ["swim", "spawn", "die", "eat"],
+  ["once", "twice"]
+);
+salmon.move();
+salmon.act();
+salmon.eat();
