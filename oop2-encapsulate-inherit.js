@@ -120,63 +120,130 @@ review.user = "Gene Siskel";
 class Umbrella {
   constructor(orgName) {
     this.orgName = orgName;
+    this.symbol = null;
+  }
+  nyse(symbol) {
+    this.symbol = symbol;
+    console.log(this.orgName + " NYSE symbol is " + this.symbol);
   }
 }
 
 class Company extends Umbrella {
-  constructor(orgName, coName, empCount) {
+  constructor(orgName, coName, empCount, locations) {
     super(orgName);
     this.coName = coName;
     this.empCount = empCount;
+    this.locations = locations;
+  }
+
+  subsidiary() {
+    console.log(this.coName + " is a subsidiary of " + this.orgName);
+  }
+
+  count() {
     console.log(
-      this.coName +
-        " is a subsidiary of " +
-        this.orgName +
-        " with approximately " +
-        this.empCount +
-        " employees."
+      this.coName + " has approximately " + this.empCount + " employees."
     );
+  }
+
+  site(coName, locations) {
+    const site1 = new Site(this.coName, this.locations);
+    site1.located(this.coName, this.locations);
   }
 }
 
 class Site extends Company {
-  constructor(coName, location) {
-    super(coName);
-    this.location = location;
-    console.log(this.coName + " is located at " + this.location);
+  constructor(coName, locations) {
+    super(coName, locations);
+  }
+
+  located(coName, locations) {
+    console.log(
+      coName +
+        " has sites at " +
+        locations[0] +
+        ", " +
+        locations[1] +
+        ", and " +
+        locations[2]
+    );
   }
 }
 
-class Employee {
-  constructor(name, title, salary) {
+class Employee extends Company {
+  constructor(name, title, salary, coName) {
+    super(coName);
     this.name = name;
     this.title = title;
     this.salary = salary;
-    console.log(this);
+    this.coName = coName;
+  }
+
+  status() {
+    console.log(
+      this.name +
+        " makes " +
+        this.salary +
+        " as a " +
+        this.coName +
+        " " +
+        this.title
+    );
   }
 }
 
-company1 = new Company("Allegis Group", "TEK Systems", 12300);
-console.log(company1.coName);
-company2 = new Company("Goldman Sachs", "Citibank", 32100);
-company3 = new Company("Ford Motor Co.", "Firestone", 12800);
-
-dallas = new Site("gabe", "Dallas");
-
-emp01 = new Employee("Sally Ford", "CEO", 220000);
-emp02 = new Employee("Tom Thumb", "manager", 90000);
-emp03 = new Employee("Loki Jones", "secretary", 85000);
-emp04 = new Employee(["Tony Stark", "Hugh Smith"], "engineer", [
-  125000,
-  137000,
+const company1 = new Company("Allegis Group", "TEK Systems", 12300, [
+  "Dallas",
+  "New York",
+  "Los Angeles",
 ]);
-emp05 = new Employee("Mason Young", "CFO", 190500);
-emp06 = new Employee("Don Hurly", "janitor", 67000);
-emp07 = new Employee("Helen Kay", "marketer", 98000);
-emp08 = new Employee("Sam Hardy", "HR", 115000);
-emp09 = new Employee("Harold Kal", "lawyer", 167000);
+company1.subsidiary();
+company1.count();
+company1.nyse("AGP");
+company1.site(this.coName, this.locations);
+const emp01 = new Employee("Sally Ford", "CEO", 220000, company1.coName);
+emp01.status();
+const emp02 = new Employee("Tom Thumb", "manager", 90000, company1.coName);
+emp02.status();
+const emp03 = new Employee("Loki Jones", "secretary", 85000, company1.coName);
+emp03.status();
+console.log(" ");
 
-// Create 10 employee instances: 1 CEO, 1 Manager, 1 Secretary, 2 Engineers, 1 Financial Officer, 1 Janitor, 1 Marketer, 1 HR Personnel, 1 Lawyer.  Feel free to add other employee
+const company2 = new Company("Goldman Sachs", "Citibank", 32100, [
+  "Paris",
+  "London",
+  "New York",
+]);
+company2.subsidiary();
+company2.count();
+company2.nyse("GMS");
+company2.site(this.coName, this.locations);
+const emp04 = new Employee("Tony Stark", "engineer", 125000, company2.coName);
+emp04.status();
+const emp10 = new Employee("Hugh Smith", "engineer", 137000, company2.coName);
+emp10.status();
+const emp05 = new Employee("Mason Young", "CFO", 190500, company2.coName);
+emp05.status();
+const emp06 = new Employee("Don Hurly", "janitor", 67000, company2.coName);
+emp06.status();
+console.log(" ");
+
+const company3 = new Company("Ford Motor Co.", "Firestone", 12800, [
+  "Detroit",
+  "Las Vegas",
+  "Houston",
+]);
+company3.subsidiary();
+company3.count();
+company3.nyse("FMC");
+company3.site(this.coName, this.locations);
+const emp07 = new Employee("Helen Kay", "marketer", 98000, company3.coName);
+emp07.status();
+const emp08 = new Employee("Sam Hardy", "HR Manager", 115000, company3.coName);
+emp08.status();
+const emp09 = new Employee("Harold Kal", "lawyer", 167000, company3.coName);
+emp09.status();
+
 //
 // Bonus Exercise:
 
