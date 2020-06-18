@@ -244,7 +244,6 @@ emp08.status();
 const emp09 = new Employee("Harold Kal", "lawyer", 167000, company3.coName);
 emp09.status();
 
-//
 // Bonus Exercise:
 
 // 3. Building on Exercise 1, Do the following :
