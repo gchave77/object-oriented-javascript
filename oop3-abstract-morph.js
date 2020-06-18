@@ -127,3 +127,44 @@ const salmon = new Fish(
 salmon.move();
 salmon.act();
 salmon.eat();
+
+class Bird extends Creature {
+  constructor(name, hunger, direction, action, duration) {
+    super(name, hunger);
+    this.direction = direction;
+    this.action = action;
+    this.duration = duration;
+    console.log(this);
+  }
+
+  move() {
+    console.log(
+      `A ${this.name} will ${this.action[0]} ${this.direction} to ${this.action[1]} for the ${this.duration[0]}.`
+    );
+  }
+
+  act() {
+    console.log(
+      `These creatures ${this.action[2]} together when they ${this.action[1]}.`
+    );
+  }
+
+  eat() {
+    if (this.hunger) {
+      console.log(`It's ${this.duration[1]} to ${this.action[3]}.`);
+    } else {
+      console.log(`Must be ${this.duration[1]} to ${this.action[0]}.`);
+    }
+  }
+}
+
+const duck = new Bird(
+  "duck",
+  false,
+  "south",
+  ["fly", "migrate", "flock", "eat"],
+  ["winter", "time"]
+);
+duck.move();
+duck.act();
+duck.eat();
