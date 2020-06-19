@@ -168,3 +168,87 @@ const duck = new Bird(
 duck.move();
 duck.act();
 duck.eat();
+
+/*
+2. For the following Person class, modify the class methods, so the sub-class methods will successfully fire.  For the Teacher method, a set of methods have already been set up.  For the Student class, it will be up to you to determine how to set up the methods to fire in the Student sub-class.  :
+*/
+
+class Person {
+  name;
+
+  eat() {
+    console.log(this.name + " is eating");
+  }
+
+  sleep = () => {
+    console.log(this.name + " is sleeping");
+  };
+
+  code = function () {
+    console.log(this.name + " is coding");
+  };
+
+  repeat = function () {
+    console.log(this.name + " is repeating the above steps, yet another time");
+  };
+
+  explain() {
+    //this function should contain a console.log() explaining what you had to do to get the correct functions to work, and the reasoning behind what you did.
+    console.log(
+      "this explain method should contain explain what you had to do to get the correct functions to work, and the reasoning behind what you did."
+    );
+  }
+}
+
+class Teacher extends Person {
+  //refactor the methods in this Teacher class, so all of these methods override the methods in the Person super class.
+
+  constructor(name) {
+    super(name);
+    this.name = name;
+  }
+
+  eat() {
+    console.log(this.name + " loves to teach before eating");
+  }
+
+  sleep() {
+    console.log(this.name + " sleeps after preparing the lesson plan");
+  }
+
+  code = () => {
+    console.log(this.name + " codes first, then teaches it the next day.");
+  };
+
+  repeat() {
+    console.log(this.name + " teaches, codes, eats, sleeps, and repeats");
+  }
+}
+
+class Student extends Person {
+  //set up your methods in this student class, so all of these methods will override the methods from the super class.
+  //eat method should print out - <stduent name> studies, then eats
+  //sleep method should print out, <student name> studies coding so much, that they dream about it in their sleep
+  //code method should print out, <student name> was first overwhelmed by coding, but kept at it, and now has become a coding guru!
+  //repeat method should print out, <student name> keeps on studying, coding, eating, and sleeping, and puts it all on repeat.
+}
+
+const teacher = new Teacher("Dr. Teacher");
+
+teacher.explain();
+
+const student = new Student("Pupil Student");
+
+student.explain();
+
+teacher.eat();
+teacher.sleep();
+teacher.code();
+teacher.repeat();
+
+student.eat();
+student.sleep();
+student.code();
+student.repeat();
+
+//
