@@ -304,8 +304,8 @@ student.repeat();
 
 class Cook {
 
-  prepare(food1,food2,food3) {
-      console.log("The cook is cooking " + food1, food2, food3);
+  prepare = function (food1, food2, food3) {
+    console.log("The cook is cooking " + food1, food2, food3);
   }
 
   prepare = function() {
@@ -313,7 +313,9 @@ class Cook {
   }
 
   explain = () => {
-      console.log("what could you do to get the prepare function to print out the food items that are being passed in to the function?  Once you figure it out, Write down your thought process in this explain method.");
+    console.log(
+      "You could include the arguments from the function call or delete the prepare function. I used Polymorphism by changing the class instance into an expression, which takes precedence over the object instance."
+    );
   }
 
 }
