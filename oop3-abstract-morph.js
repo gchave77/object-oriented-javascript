@@ -177,25 +177,27 @@ class Person {
   name;
 
   eat() {
-    console.log(this.name + " is eating");
+    console.log(this.name + " is eating - Parent class");
   }
 
   sleep = () => {
-    console.log(this.name + " is sleeping");
+    console.log(this.name + " is sleeping - Parent class");
   };
 
   code = function () {
-    console.log(this.name + " is coding");
+    console.log(this.name + " is coding - Parent class");
   };
 
   repeat = function () {
-    console.log(this.name + " is repeating the above steps, yet another time");
+    console.log(
+      this.name +
+        " is repeating the above steps, yet another time - Parent class"
+    );
   };
 
   explain() {
-    //this function should contain a console.log() explaining what you had to do to get the correct functions to work, and the reasoning behind what you did.
     console.log(
-      "this explain method should contain explain what you had to do to get the correct functions to work, and the reasoning behind what you did."
+      "this explain method should contain explain what you had to do to get the correct functions to work, and the reasoning behind what you did. - Parent class"
     );
   }
 }
@@ -208,20 +210,32 @@ class Teacher extends Person {
     this.name = name;
   }
 
-  eat() {
-    console.log(this.name + " loves to teach before eating");
-  }
-
-  sleep() {
-    console.log(this.name + " sleeps after preparing the lesson plan");
-  }
-
-  code = () => {
-    console.log(this.name + " codes first, then teaches it the next day.");
+  eat = () => {
+    console.log(this.name + " loves to teach before eating - Teacher class");
   };
 
-  repeat() {
-    console.log(this.name + " teaches, codes, eats, sleeps, and repeats");
+  sleep = () => {
+    console.log(
+      this.name + " sleeps after preparing the lesson plan - Teacher class"
+    );
+  };
+
+  code = () => {
+    console.log(
+      this.name + " codes first, then teaches it the next day. - Teacher class"
+    );
+  };
+
+  repeat = () => {
+    console.log(
+      this.name + " teaches, codes, eats, sleeps, and repeats - Teacher class"
+    );
+  };
+
+  explain() {
+    console.log(
+      "Polymorphism first checks fields on the object instance, then the parent class for expressions. Next it checks for prototypes of the child, then the parent. - Teacher class"
+    );
   }
 }
 
@@ -231,6 +245,41 @@ class Student extends Person {
   //sleep method should print out, <student name> studies coding so much, that they dream about it in their sleep
   //code method should print out, <student name> was first overwhelmed by coding, but kept at it, and now has become a coding guru!
   //repeat method should print out, <student name> keeps on studying, coding, eating, and sleeping, and puts it all on repeat.
+  constructor(name) {
+    super(name);
+    this.name = name;
+  }
+
+  eat = () => {
+    console.log(this.name + " studies, then eats - Student class");
+  };
+
+  sleep = () => {
+    console.log(
+      this.name +
+        " studies coding so much, that they dream about it in their sleep - Student class"
+    );
+  };
+
+  code = () => {
+    console.log(
+      this.name +
+        " was first overwhelmed by coding, but kept at it, and now has become a coding guru! - Student class"
+    );
+  };
+
+  repeat = () => {
+    console.log(
+      this.name +
+        " keeps on studying, coding, eating, and sleeping, and puts it all on repeat. - Student class"
+    );
+  };
+
+  explain() {
+    console.log(
+      "Polymorphism first checks fields on the object instance, then the parent class for expressions. Next it checks for prototypes of the child, then the parent. - Student class"
+    );
+  }
 }
 
 const teacher = new Teacher("Dr. Teacher");
