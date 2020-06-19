@@ -1,19 +1,16 @@
 /*
 1. Create a Abstract Creature class that is NOT allowed to be instantiated. Find a way to prevent this class from being instantiated with an instance.  In the Creature class, include two abstract methods.  move(), and act().  These methods are NOT allowed to be invoked from the Abstract class, so throw an error in these methods if they are invoked by any inherited sub-classes.  
-
 Create at least 3 sub-classes that inherit from the Abstract Creature Class.  Example sub-classes are: 
     -Human
     -Dinosaur
     -Bird
     -Reptile
     -Fish
-
 These sub-classes MUST implement the abstract methods of move() and act(), which are found on the abstract Creature class. In addition to the 2 abstract methods, implement 1 unique method on each sub-class.  Also, each sub-class MUST have at least 2 unique property fields on them.  Example property fields are:
     -name
     -weight
     -food
     -age
-
 */
 
 class Creature {
@@ -300,4 +297,29 @@ student.sleep();
 student.code();
 student.repeat();
 
-//
+//****************************************************************************************************************************************************************************************
+//Bonus Exercise:
+
+//3. Consider the following class:
+
+class Cook {
+  prepare = function (food1, food2, food3) {
+    console.log("The cook is cooking " + food1, food2, food3);
+  };
+
+  prepare() {
+    console.log("The cook is cooking");
+  }
+
+  explain = () => {
+    console.log(
+      "what could you do to get the prepare function to print out the food items that are being passed in to the function?  You could include the arguments from the function call or delete the prepare function. I used Polymorphism by changing the class instance into an expression, which takes precedence over the object instance."
+    );
+  };
+}
+
+const cook = new Cook();
+
+cook.prepare("turkey", "salami", "pizza");
+
+cook.explain();
