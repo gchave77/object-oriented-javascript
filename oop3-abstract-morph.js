@@ -1,104 +1,283 @@
-
 /*
 1. Create a Abstract Creature class that is NOT allowed to be instantiated. Find a way to prevent this class from being instantiated with an instance.  In the Creature class, include two abstract methods.  move(), and act().  These methods are NOT allowed to be invoked from the Abstract class, so throw an error in these methods if they are invoked by any inherited sub-classes.  
-
 Create at least 3 sub-classes that inherit from the Abstract Creature Class.  Example sub-classes are: 
     -Human
     -Dinosaur
     -Bird
     -Reptile
     -Fish
-
 These sub-classes MUST implement the abstract methods of move() and act(), which are found on the abstract Creature class. In addition to the 2 abstract methods, implement 1 unique method on each sub-class.  Also, each sub-class MUST have at least 2 unique property fields on them.  Example property fields are:
     -name
     -weight
     -food
     -age
-
 */
 
-    class Creature {
-        //your code here...
+class Creature {
+  //your code here...
+  constructor(name, hunger) {
+    this.name = name;
+    this.hunger = hunger;
+    if (this.constructor == Creature) {
+      throw new Error(
+        "Unable to instantiate the constructor. These methods are NOT allowed to be invoked from the Abstract class."
+      );
     }
+  }
 
-    class Human extends Creature {
-        //your code here...
+  move() {
+    throw new Error(
+      "Unable to instantiate move method from the Abstract class."
+    );
+  }
+
+  act() {
+    throw new Error(
+      "Unable to instantiate act method from the Abstract class."
+    );
+  }
+}
+
+class Human extends Creature {
+  //your code here...
+  constructor(name, hunger, direction, action, duration) {
+    super(name, hunger);
+    this.direction = direction;
+    this.action = action;
+    this.duration = duration;
+    console.log(this);
+  }
+
+  move() {
+    console.log(
+      `${this.name} ${this.action[0]} towards the ${this.direction} for ${this.duration[0]} minutes.`
+    );
+  }
+
+  act() {
+    console.log(
+      `Then ${this.name} ${this.action[1]} for ${this.duration[1]} minutes.`
+    );
+  }
+
+  eat() {
+    if (this.hunger) {
+      console.log(`Hunger pangs convinced ${this.name} to ${this.action[2]}.`);
+    } else {
+      console.log(`It is time for ${this.name} to ${this.action[3]}.`);
     }
+  }
+}
 
+const bob = new Human(
+  "Bob",
+  true,
+  "west",
+  ["walked", "sat down", "eat lunch", "take a nap"],
+  [5, 2]
+);
+bob.move();
+bob.act();
+bob.eat();
 
+class Fish extends Creature {
+  constructor(name, hunger, direction, action, duration) {
+    super(name, hunger);
+    this.direction = direction;
+    this.action = action;
+    this.duration = duration;
+    console.log(this);
+  }
 
+  move() {
+    console.log(
+      `A ${this.name} will ${this.action[0]} ${this.direction} to ${this.action[1]}.`
+    );
+  }
+
+  act() {
+    console.log(
+      `Most ${this.name} ${this.action[2]} after they ${this.action[1]}.`
+    );
+  }
+
+  eat() {
+    if (this.hunger) {
+      console.log(
+        `Typically, ${this.name} ${this.action[3]} ${this.duration[1]} a day.`
+      );
+    } else {
+      console.log(
+        `They only ${this.action[1]} ${this.duration[0]} in their lifetime.`
+      );
+    }
+  }
+}
+
+const salmon = new Fish(
+  "salmon",
+  true,
+  "upstream",
+  ["swim", "spawn", "die", "eat"],
+  ["once", "twice"]
+);
+salmon.move();
+salmon.act();
+salmon.eat();
+
+class Bird extends Creature {
+  constructor(name, hunger, direction, action, duration) {
+    super(name, hunger);
+    this.direction = direction;
+    this.action = action;
+    this.duration = duration;
+    console.log(this);
+  }
+
+  move() {
+    console.log(
+      `A ${this.name} will ${this.action[0]} ${this.direction} to ${this.action[1]} for the ${this.duration[0]}.`
+    );
+  }
+
+  act() {
+    console.log(
+      `These creatures ${this.action[2]} together when they ${this.action[1]}.`
+    );
+  }
+
+  eat() {
+    if (this.hunger) {
+      console.log(`It's ${this.duration[1]} to ${this.action[3]}.`);
+    } else {
+      console.log(`Must be ${this.duration[1]} to ${this.action[0]}.`);
+    }
+  }
+}
+
+const duck = new Bird(
+  "duck",
+  false,
+  "south",
+  ["fly", "migrate", "flock", "eat"],
+  ["winter", "time"]
+);
+duck.move();
+duck.act();
+duck.eat();
 
 /*
 2. For the following Person class, modify the class methods, so the sub-class methods will successfully fire.  For the Teacher method, a set of methods have already been set up.  For the Student class, it will be up to you to determine how to set up the methods to fire in the Student sub-class.  :
 */
 
 class Person {
-    name;
+  name;
 
-    eat() {
-        console.log(this.name + " is eating");
-    }
+  eat() {
+    console.log(this.name + " is eating - Parent class");
+  }
 
-    sleep = () => {
-        console.log(this.name + " is sleeping");
-    }
+  sleep = () => {
+    console.log(this.name + " is sleeping - Parent class");
+  };
 
-    code = function() {
-        console.log(this.name + " is coding");
-    }
+  code = function () {
+    console.log(this.name + " is coding - Parent class");
+  };
 
-    repeat = function() {
-        console.log(this.name + " is repeating the above steps, yet another time");
-    }
+  repeat = function () {
+    console.log(
+      this.name +
+        " is repeating the above steps, yet another time - Parent class"
+    );
+  };
 
-    explain() {
-        //this function should contain a console.log() explaining what you had to do to get the correct functions to work, and the reasoning behind what you did.
-        console.log("this explain method should contain explain what you had to do to get the correct functions to work, and the reasoning behind what you did.");
-    }
-
+  explain() {
+    console.log(
+      "this explain method should contain explain what you had to do to get the correct functions to work, and the reasoning behind what you did. - Parent class"
+    );
+  }
 }
-
 
 class Teacher extends Person {
+  //refactor the methods in this Teacher class, so all of these methods override the methods in the Person super class.
 
-    //refactor the methods in this Teacher class, so all of these methods override the methods in the Person super class.  
+  constructor(name) {
+    super(name);
+    this.name = name;
+  }
 
-    constructor(name) {
-        super(name);
-        this.name = name;
-    }
+  eat = () => {
+    console.log(this.name + " loves to teach before eating - Teacher class");
+  };
 
-    eat() {
-        console.log(this.name + " loves to teach before eating");
-    }
+  sleep = () => {
+    console.log(
+      this.name + " sleeps after preparing the lesson plan - Teacher class"
+    );
+  };
 
-    sleep() {
-        console.log(this.name + " sleeps after preparing the lesson plan");
-    }
+  code = () => {
+    console.log(
+      this.name + " codes first, then teaches it the next day. - Teacher class"
+    );
+  };
 
-    code = () => {
-        console.log(this.name + " codes first, then teaches it the next day.");
-    }
+  repeat = () => {
+    console.log(
+      this.name + " teaches, codes, eats, sleeps, and repeats - Teacher class"
+    );
+  };
 
-    repeat() {
-        console.log(this.name + " teaches, codes, eats, sleeps, and repeats");
-    }
+  explain() {
+    console.log(
+      "Polymorphism first checks fields on the object instance, then the parent class for expressions. Next it checks for prototypes of the child, then the parent. - Teacher class"
+    );
+  }
 }
-
 
 class Student extends Person {
-    //set up your methods in this student class, so all of these methods will override the methods from the super class.
+  //set up your methods in this student class, so all of these methods will override the methods from the super class.
+  //eat method should print out - <stduent name> studies, then eats
+  //sleep method should print out, <student name> studies coding so much, that they dream about it in their sleep
+  //code method should print out, <student name> was first overwhelmed by coding, but kept at it, and now has become a coding guru!
+  //repeat method should print out, <student name> keeps on studying, coding, eating, and sleeping, and puts it all on repeat.
+  constructor(name) {
+    super(name);
+    this.name = name;
+  }
 
-    //eat method should print out - <stduent name> studies, then eats
+  eat = () => {
+    console.log(this.name + " studies, then eats - Student class");
+  };
 
-    //sleep method should print out, <student name> studies coding so much, that they dream about it in their sleep
+  sleep = () => {
+    console.log(
+      this.name +
+        " studies coding so much, that they dream about it in their sleep - Student class"
+    );
+  };
 
-    //code method should print out, <student name> was first overwhelmed by coding, but kept at it, and now has become a coding guru!
+  code = () => {
+    console.log(
+      this.name +
+        " was first overwhelmed by coding, but kept at it, and now has become a coding guru! - Student class"
+    );
+  };
 
-    //repeat method should print out, <student name> keeps on studying, coding, eating, and sleeping, and puts it all on repeat.  
+  repeat = () => {
+    console.log(
+      this.name +
+        " keeps on studying, coding, eating, and sleeping, and puts it all on repeat. - Student class"
+    );
+  };
 
+  explain() {
+    console.log(
+      "Polymorphism first checks fields on the object instance, then the parent class for expressions. Next it checks for prototypes of the child, then the parent. - Student class"
+    );
+  }
 }
-
 
 const teacher = new Teacher("Dr. Teacher");
 
@@ -118,33 +297,29 @@ student.sleep();
 student.code();
 student.repeat();
 
-
-
-
-//****************************************************************************************************************************************************************************************   
+//****************************************************************************************************************************************************************************************
 //Bonus Exercise:
 
 //3. Consider the following class:
 
 class Cook {
+  prepare = function (food1, food2, food3) {
+    console.log("The cook is cooking " + food1, food2, food3);
+  };
 
-    prepare(food1,food2,food3) {
-        console.log("The cook is cooking " + food1, food2, food3);
-    }
+  prepare = function () {
+    console.log("The cook is cooking");
+  };
 
-    prepare = function() {
-        console.log('The cook is cooking');
-    }
-
-    explain = () => {
-        console.log("what could you do to get the prepare function to print out the food items that are being passed in to the function?  Once you figure it out, Write down your thought process in this explain method.");
-    }
-
+  explain = () => {
+    console.log(
+      "You could include the arguments from the function call or delete the prepare function. I used Polymorphism by changing the class instance into a declaration, which takes precedence over the object instance."
+    );
+  };
 }
 
 const cook = new Cook();
 
-cook.prepare("turkey","salami","pizza");
+cook.prepare("turkey", "salami", "pizza");
 
 cook.explain();
-
