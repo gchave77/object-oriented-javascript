@@ -297,31 +297,29 @@ student.sleep();
 student.code();
 student.repeat();
 
-//****************************************************************************************************************************************************************************************   
+//****************************************************************************************************************************************************************************************
 //Bonus Exercise:
 
 //3. Consider the following class:
 
 class Cook {
-
   prepare = function (food1, food2, food3) {
     console.log("The cook is cooking " + food1, food2, food3);
-  }
+  };
 
-  prepare = function() {
-      console.log('The cook is cooking');
-  }
+  prepare = function () {
+    console.log("The cook is cooking");
+  };
 
   explain = () => {
     console.log(
-      "You could include the arguments from the function call or delete the prepare function. I used Polymorphism by changing the class instance into an expression, which takes precedence over the object instance."
+      "You could include the arguments from the function call or delete the prepare function. I used Polymorphism by changing the class instance into a declaration, which takes precedence over the object instance."
     );
-  }
-
+  };
 }
 
 const cook = new Cook();
 
-cook.prepare("turkey","salami","pizza");
+cook.prepare("turkey", "salami", "pizza");
 
 cook.explain();
